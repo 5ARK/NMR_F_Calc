@@ -31,7 +31,7 @@ def model_select(selection_object):
         message = 'Choose ' + selection_object + ': '
         model_no = input(message)
         if model_no.isnumeric():
-            model_no=int(model_no)
+            model_no = int(model_no)
             if model_no == 1 or model_no == 2:
                 good_input = 1
             else:
