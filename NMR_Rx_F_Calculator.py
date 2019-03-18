@@ -166,14 +166,12 @@ def F11():
     L4 = dB_2_lin(dB_input('output cable loss', '+'), 'power')
     F5 = dB_2_lin(dB_input('NMR spectrometer RF receiver noise factor', '+'), 'power')
     n_meas = lin_pos_input('number of averaged measurements')
-    #n_acq = lin_pos_input('number of acquisition points')
     #Calculation
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Calculated values~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     #Noise figure of hardware part of NMR spectroscopy Rx chain
     F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3 ** 2))) * (F3 - 1 + ((L4 * F5 - 1) / G3))) - 1)
     print('Noise figure of the hardware part of NMR spectroscopy Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F_HW, lin_2_dB(F_HW, 'power')))
     #Overall noise figure of NMR spectroscopy Rx chain
-    #F11 = (F_HW / (n_meas * n_acq)) * 2
     F11 = F_HW / n_meas
     print('Overall noise figure of NMR spectroscopy system Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F11, lin_2_dB(F11, 'power')))
     #Expected signal-to-noise ratio on the spectrometer screen
@@ -186,7 +184,6 @@ def F12():
     #Parameter input
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Parameter input~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     SNRout = dB_2_lin(dB_input('output signal-to-noise ratio\n(shown on the spectrometer screen)', 'both'), 'power')
-    #n_acq = lin_pos_input('number of acquisition points')
     n_meas = lin_pos_input('number of averaged measurements')
     F5 = dB_2_lin(dB_input('NMR spectrometer RF receiver noise factor', '+'), 'power')
     L4 = dB_2_lin(dB_input('output cable loss', '+'), 'power')
@@ -202,7 +199,6 @@ def F12():
     F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3 ** 2))) * (F3 - 1 + ((L4 * F5 - 1) / G3))) - 1)
     print('Noise figure of the hardware part of NMR spectroscopy Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F_HW, lin_2_dB(F_HW, 'power')))
     #Overall noise figure of NMR spectroscopy Rx chain
-    #F12 = (F_HW / (n_meas * n_acq)) * 2
     F12 = F_HW / n_meas
     print('Overall noise figure of NMR spectroscopy system Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F12, lin_2_dB(F12, 'power')))
     #Expected signal-to-noise ratio on the probe
@@ -227,14 +223,12 @@ def F21():
     L4 = dB_2_lin(dB_input('output cable loss', '+'), 'power')
     F5 = dB_2_lin(dB_input('NMR spectrometer RF receiver noise factor', '+'), 'power')
     n_meas = lin_pos_input('number of averaged measurements')
-    #n_acq = lin_pos_input('number of acquisition points')
     #Calculation
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Calculated values~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     #Noise figure of hardware part of NMR spectroscopy Rx chain
     F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3 ** 2))) * (F3 - 1 + (1 / (G3 * (1 - (S11_3b ** 2)))) * (F3b - 1 + ((L4 * F5 - 1) / G3b)))) - 1)
     print('Noise figure of the hardware part of NMR spectroscopy Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F_HW, lin_2_dB(F_HW, 'power')))
     #Overall noise figure of NMR spectroscopy Rx chain
-    #F21 = (F_HW / (n_meas * n_acq)) * 2
     F21 = F_HW / n_meas
     print('Overall noise figure of NMR spectroscopy system Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F21, lin_2_dB(F21, 'power')))
     #Expected signal-to-noise ratio on the spectrometer screen
@@ -247,7 +241,6 @@ def F22():
     #Parameter input
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Parameter input~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     SNRout = dB_2_lin(dB_input('output signal-to-noise ratio\n(shown on the spectrometer screen)', 'both'), 'power')
-    #n_acq = lin_pos_input('number of acquisition points')
     n_meas = lin_pos_input('number of averaged measurements')
     F5 = dB_2_lin(dB_input('NMR spectrometer RF receiver noise factor', '+'), 'power')
     L4 = dB_2_lin(dB_input('output cable loss', '+'), 'power')
@@ -266,7 +259,6 @@ def F22():
     F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3 ** 2))) * (F3 - 1 + (1 / (G3 * (1 - (S11_3b ** 2)))) * (F3b - 1 + ((L4 * F5 - 1) / G3b)))) - 1)
     print('Noise figure of the hardware part of NMR spectroscopy Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F_HW, lin_2_dB(F_HW, 'power')))
     #Overall noise figure of NMR spectroscopy Rx chain
-    #F22 = (F_HW / (n_meas * n_acq)) * 2
     F22 = F_HW / n_meas
     print('Overall noise figure of NMR spectroscopy system Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F22, lin_2_dB(F22, 'power')))
     #Expected signal-to-noise ratio on the probe
