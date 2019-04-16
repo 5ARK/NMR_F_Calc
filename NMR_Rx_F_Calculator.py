@@ -160,16 +160,16 @@ def F11():
     Tcoil = lin_pos_input('coil temperature in K')
     L1 = dB_2_lin(dB_input('input cable loss', '+'), 'power')
     L2 = dB_2_lin(dB_input('duplexer loss', '+'), 'power')
-    G3 = dB_2_lin(dB_input('pre-amplifier gain', '+'), 'power')
-    F3 = dB_2_lin(dB_input('pre-amplifier noise factor', '+'), 'power')
-    S11_3 = dB_2_lin(dB_input('pre-amplifier S11 parameter', '-'), 'voltage')
+    G3a = dB_2_lin(dB_input('pre-amplifier gain', '+'), 'power')
+    F3a = dB_2_lin(dB_input('pre-amplifier noise factor', '+'), 'power')
+    S11_3a = dB_2_lin(dB_input('pre-amplifier S11 parameter', '-'), 'voltage')
     L4 = dB_2_lin(dB_input('output cable loss', '+'), 'power')
     F5 = dB_2_lin(dB_input('NMR spectrometer RF receiver noise factor', '+'), 'power')
     n_meas = lin_pos_input('number of averaged measurements')
     #Calculation
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Calculated values~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     #Noise figure of hardware part of NMR spectroscopy Rx chain
-    F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3 ** 2))) * (F3 - 1 + ((L4 * F5 - 1) / G3))) - 1)
+    F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3a ** 2))) * (F3a - 1 + ((L4 * F5 - 1) / G3a))) - 1)
     print('Noise figure of the hardware part of NMR spectroscopy Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F_HW, lin_2_dB(F_HW, 'power')))
     #Overall noise figure of NMR spectroscopy Rx chain
     F11 = F_HW / n_meas
@@ -187,16 +187,16 @@ def F12():
     n_meas = lin_pos_input('number of averaged measurements')
     F5 = dB_2_lin(dB_input('NMR spectrometer RF receiver noise factor', '+'), 'power')
     L4 = dB_2_lin(dB_input('output cable loss', '+'), 'power')
-    G3 = dB_2_lin(dB_input('pre-amplifier gain', '+'), 'power')
-    F3 = dB_2_lin(dB_input('pre-amplifier noise factor', '+'), 'power')
-    S11_3 = dB_2_lin(dB_input('pre-amplifier S11 parameter', '-'), 'voltage')
+    G3a = dB_2_lin(dB_input('pre-amplifier gain', '+'), 'power')
+    F3a = dB_2_lin(dB_input('pre-amplifier noise factor', '+'), 'power')
+    S11_3a = dB_2_lin(dB_input('pre-amplifier S11 parameter', '-'), 'voltage')
     L2 = dB_2_lin(dB_input('duplexer loss', '+'), 'power')
     L1 = dB_2_lin(dB_input('input cable loss', '+'), 'power')
     Tcoil = lin_pos_input('coil temperature in K')
     #Calculation
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Calculated values~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     #Noise figure of hardware part of NMR spectroscopy Rx chain
-    F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3 ** 2))) * (F3 - 1 + ((L4 * F5 - 1) / G3))) - 1)
+    F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3a ** 2))) * (F3a - 1 + ((L4 * F5 - 1) / G3a))) - 1)
     print('Noise figure of the hardware part of NMR spectroscopy Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F_HW, lin_2_dB(F_HW, 'power')))
     #Overall noise figure of NMR spectroscopy Rx chain
     F12 = F_HW / n_meas
@@ -214,9 +214,9 @@ def F21():
     Tcoil = lin_pos_input('coil temperature in K')
     L1 = dB_2_lin(dB_input('input cable loss', '+'), 'power')
     L2 = dB_2_lin(dB_input('duplexer loss', '+'), 'power')
-    G3 = dB_2_lin(dB_input('pre-amplifier gain', '+'), 'power')
-    F3 = dB_2_lin(dB_input('pre-amplifier noise factor', '+'), 'power')
-    S11_3 = dB_2_lin(dB_input('pre-amplifier S11 parameter', '-'), 'voltage')
+    G3a = dB_2_lin(dB_input('pre-amplifier gain', '+'), 'power')
+    F3a = dB_2_lin(dB_input('pre-amplifier noise factor', '+'), 'power')
+    S11_3a = dB_2_lin(dB_input('pre-amplifier S11 parameter', '-'), 'voltage')
     G3b = dB_2_lin(dB_input('second stage amplifier gain', '+'), 'power')
     F3b = dB_2_lin(dB_input('second stage amplifier noise factor', '+'), 'power')
     S11_3b = dB_2_lin(dB_input('second stage amplifier S11 parameter', '-'), 'voltage')
@@ -226,7 +226,7 @@ def F21():
     #Calculation
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Calculated values~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     #Noise figure of hardware part of NMR spectroscopy Rx chain
-    F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3 ** 2))) * (F3 - 1 + (1 / (G3 * (1 - (S11_3b ** 2)))) * (F3b - 1 + ((L4 * F5 - 1) / G3b)))) - 1)
+    F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3a ** 2))) * (F3a - 1 + (1 / (G3a * (1 - (S11_3b ** 2)))) * (F3b - 1 + ((L4 * F5 - 1) / G3b)))) - 1)
     print('Noise figure of the hardware part of NMR spectroscopy Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F_HW, lin_2_dB(F_HW, 'power')))
     #Overall noise figure of NMR spectroscopy Rx chain
     F21 = F_HW / n_meas
@@ -247,16 +247,16 @@ def F22():
     G3b = dB_2_lin(dB_input('second stage amplifier gain', '+'), 'power')
     F3b = dB_2_lin(dB_input('second stage amplifier noise factor', '+'), 'power')
     S11_3b = dB_2_lin(dB_input('second stage amplifier S11 parameter', '-'), 'voltage')
-    G3 = dB_2_lin(dB_input('pre-amplifier gain', '+'), 'power')
-    F3 = dB_2_lin(dB_input('pre-amplifier noise factor', '+'), 'power')
-    S11_3 = dB_2_lin(dB_input('pre-amplifier S11 parameter', '-'), 'voltage')
+    G3a = dB_2_lin(dB_input('pre-amplifier gain', '+'), 'power')
+    F3a = dB_2_lin(dB_input('pre-amplifier noise factor', '+'), 'power')
+    S11_3a = dB_2_lin(dB_input('pre-amplifier S11 parameter', '-'), 'voltage')
     L2 = dB_2_lin(dB_input('duplexer loss', '+'), 'power')
     L1 = dB_2_lin(dB_input('input cable loss', '+'), 'power')
     Tcoil = lin_pos_input('coil temperature in K')
     #Calculation
     print('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Calculated values~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     #Noise figure of hardware part of NMR spectroscopy Rx chain
-    F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3 ** 2))) * (F3 - 1 + (1 / (G3 * (1 - (S11_3b ** 2)))) * (F3b - 1 + ((L4 * F5 - 1) / G3b)))) - 1)
+    F_HW = 1 + ((2 * T0) / (Tcoil + T0)) * (L1 * L2 * (1 + (1 / (1 - (S11_3a ** 2))) * (F3a - 1 + (1 / (G3a * (1 - (S11_3b ** 2)))) * (F3b - 1 + ((L4 * F5 - 1) / G3b)))) - 1)
     print('Noise figure of the hardware part of NMR spectroscopy Rx chain:\n{:.4f} (linear scale) = {:.4f} dB\n'.format(F_HW, lin_2_dB(F_HW, 'power')))
     #Overall noise figure of NMR spectroscopy Rx chain
     F22 = F_HW / n_meas
